@@ -148,6 +148,10 @@ const save = () => {
         .catch((error) => console.error("kd-onlooker:", error));
 };
 
+/**
+ * Returns the bytes as lowercase hex string.
+ * @param {Uint8Array} bytes
+ */
 const toHex = (bytes) => {
     return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
 };

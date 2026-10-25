@@ -59,6 +59,7 @@ export const addRequest = (tabId, pageUrl, request) => {
  */
 export const updateRequest = (tabId, requestId, url, fields) => {
     return updateTab(tabId, (record) => {
+        /** @type {object | undefined} */
         const request = record?.requests.findLast((entry) => entry.requestId === requestId && entry.url === url);
         if (!request) return undefined;
         Object.assign(request, fields);
