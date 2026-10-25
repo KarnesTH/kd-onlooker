@@ -1,11 +1,13 @@
-import { showView, field, setText, list, cloneTemplate, setIcon, initial } from "../dom.js";
-import { text, countText, languageName, dateTimeText, lifetimeText } from "../localizer.js";
-import { visibleFindings, isWarning, findingIcon, titleKey } from "../finding-kinds.js";
+"use strict";
+
+import {showView, field, setText, list, cloneTemplate, setIcon, initial} from "../dom.js";
+import {text, countText, languageName, dateTimeText, lifetimeText} from "../localizer.js";
+import {visibleFindings, isWarning, findingIcon, titleKey} from "../finding-kinds.js";
 
 /**
  * Fills the recipient view; `onBack` returns to the overview, `onTechnical` opens the technical view.
  */
-export function renderRecipient(recipient, onBack, onTechnical) {
+export const renderRecipient = (recipient, onBack, onTechnical) => {
     const view = showView("recipient");
     const findings = visibleFindings(recipient.findings);
 
@@ -23,12 +25,12 @@ export function renderRecipient(recipient, onBack, onTechnical) {
 
     field(view, "back").onclick = onBack;
     field(view, "technical").onclick = onTechnical;
-}
+};
 
 /**
  * Fills the cookie section; hidden when the recipient has no cookies.
  */
-function renderCookies(view, recipient) {
+const renderCookies = (view, recipient) => {
     const cookies = recipient.cookies;
     field(view, "cookies").hidden = cookies.length === 0;
     setText(view, "cookiesCount", countText("cookiesCount", cookies.length, [recipient.name]));
@@ -37,20 +39,20 @@ function renderCookies(view, recipient) {
         ? text("cookiesShared", [recipient.name])
         : text("cookiesPartitioned", [recipient.name, cookies[0]?.partitionSite ?? ""]));
     list(view, "cookies").replaceChildren(...cookies.map(cookieRow));
-}
+};
 
-function cookieRow(cookie) {
+const cookieRow = (cookie) => {
     const row = cloneTemplate("tpl-cookie-row");
     setText(row, "name", cookie.name);
     setText(row, "lifetime", lifetimeText(cookie.session ? null : cookie.expirationDate));
     list(row, "chips").replaceChildren(...cookieChips(cookie.parts));
     return row;
-}
+};
 
 /**
- * Returns chips for a cookie: one identifier chip, up to two timestamps and up to two texts.
+ * Returns chips for a cookie: one identifier chip, up to two timestamps, and up to two texts.
  */
-function cookieChips(parts) {
+const cookieChips = (parts) => {
     const chips = [];
     if (parts.some((part) => part.kind === "identifier")) {
         const chip = cloneTemplate("tpl-chip-warn");
@@ -63,7 +65,7 @@ function cookieChips(parts) {
     for (const time of times) chips.push(plainChip(text("partTimestamp", [time])));
     for (const decoded of texts) chips.push(plainChip(text("partText", [decoded])));
     return chips;
-}
+};
 
 function plainChip(label) {
     const chip = cloneTemplate("tpl-chip");
@@ -71,18 +73,18 @@ function plainChip(label) {
     return chip;
 }
 
-function fact(finding, recipient) {
+const fact = (finding, recipient) => {
     const row = cloneTemplate(isWarning(finding.kind) ? "tpl-fact-warn" : "tpl-fact");
     setIcon(field(row, "icon"), findingIcon(finding.kind));
     setText(row, "title", text(titleKey(finding.kind)));
     setText(row, "value", factValue(finding, recipient));
     return row;
-}
+};
 
 /**
  * Formats the matched value of a finding for display.
  */
-function factValue(finding, recipient) {
+const factValue = (finding, recipient) => {
     switch (finding.kind) {
         case "identifier":
             return countText("identifierValue", finding.otherSites, [recipient.name]);
@@ -95,4 +97,4 @@ function factValue(finding, recipient) {
         default:
             return String(finding.value);
     }
-}
+};

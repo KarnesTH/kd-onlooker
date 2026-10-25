@@ -1,13 +1,16 @@
-import { showView, field, setText, list, cloneTemplate, setIcon } from "../dom.js";
-import { text, countText, timeText, dateTimeText, lifetimeText } from "../localizer.js";
+"use strict";
 
-const openIndex = { requests: 0, cookieItems: 0 };
+import {showView, field, setText, list, cloneTemplate} from "../dom.js";
+import {text, countText, timeText, dateTimeText, lifetimeText} from "../localizer.js";
+
+const openIndex = {requests: 0, cookieItems: 0};
+const TAB_FIELDS = {requests: "tabRequests", cookieItems: "tabCookies"};
 
 /**
  * Fills the technical view with the requests and cookies of a recipient; the requests tab and the
  * first item of each list start open.
  */
-export function renderTechnical(recipient, onBack) {
+export const renderTechnical = (recipient, onBack) => {
     const view = showView("technical");
     setText(view, "backLabel", recipient.name);
     setText(view, "sub", `${recipient.name} · ${recipient.hosts.join(", ")}`);
@@ -31,20 +34,35 @@ export function renderTechnical(recipient, onBack) {
     tabCookies.textContent = text("tabCookies", [recipient.cookies.length]);
     tabRequests.onclick = () => selectTab(view, "requests");
     tabCookies.onclick = () => selectTab(view, "cookieItems");
+    tabRequests.onkeydown = (event) => switchTabByKey(view, event, "cookieItems");
+    tabCookies.onkeydown = (event) => switchTabByKey(view, event, "requests");
     selectTab(view, "requests");
-}
+};
 
 /**
- * Shows the panel `name` ("requests" or "cookieItems") and marks its tab as selected.
+ * Shows the panel `name` ("requests" or "cookieItems"), marks its tab as selected, and makes only the
+ * selected tab reachable with Tab.
  */
-function selectTab(view, name) {
-    list(view, "requests").hidden = name !== "requests";
-    list(view, "cookieItems").hidden = name !== "cookieItems";
-    field(view, "tabRequests").setAttribute("aria-selected", String(name === "requests"));
-    field(view, "tabCookies").setAttribute("aria-selected", String(name === "cookieItems"));
-}
+const selectTab = (view, name) => {
+    for (const [panel, tabField] of Object.entries(TAB_FIELDS)) {
+        const selected = panel === name;
+        list(view, panel).hidden = !selected;
+        field(view, tabField).setAttribute("aria-selected", String(selected));
+        field(view, tabField).tabIndex = selected ? 0 : -1;
+    }
+};
 
-function requestItem(request, index, container) {
+/**
+ * Selects and focuses the `other` tab on ArrowLeft or ArrowRight.
+ */
+const switchTabByKey = (view, event, other) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    selectTab(view, other);
+    field(view, TAB_FIELDS[other]).focus();
+};
+
+const requestItem = (request, index, container) => {
     const item = cloneTemplate("tpl-request");
     setText(item, "method", request.method);
     setText(item, "path", request.path);
@@ -63,9 +81,9 @@ function requestItem(request, index, container) {
 
     field(item, "toggle").onclick = () => toggle(container, index);
     return item;
-}
+};
 
-function cookieItem(cookie, index, container) {
+const cookieItem = (cookie, index, container) => {
     const item = cloneTemplate("tpl-cookie-item");
     setText(item, "name", cookie.name);
     setText(item, "domain", cookie.domain.replace(/^\./, ""));
@@ -96,37 +114,37 @@ function cookieItem(cookie, index, container) {
 
     field(item, "toggle").onclick = () => toggle(container, index);
     return item;
-}
+};
 
-function partMeaning(part) {
+const partMeaning = (part) => {
     if (part.kind === "identifier") return text("partIdentifier");
     if (part.kind === "timestamp") return text("partTimestamp", [dateTimeText(part.time)]);
     if (part.kind === "text") return text("partText", [part.decoded]);
     return "";
-}
+};
 
-function yesNo(value) {
+const yesNo = (value) => {
     return text(value ? "valueYes" : "valueNo");
-}
+};
 
-function kvRow(template, key, value, hit) {
+const kvRow = (template, key, value, hit) => {
     const row = cloneTemplate(template);
     setText(row, "key", key);
     setText(row, "value", value);
     field(row, "value").classList.toggle("kv__value--hit", hit);
     return row;
-}
+};
 
-function toggle(container, index) {
+const toggle = (container, index) => {
     const name = container.dataset.list;
     openIndex[name] = openIndex[name] === index ? -1 : index;
     applyOpenState(container);
-}
+};
 
 /**
  * Expands the item at the container's open index and collapses all others.
  */
-function applyOpenState(container) {
+const applyOpenState = (container) => {
     const index = openIndex[container.dataset.list];
     [...container.children].forEach((item, position) => {
         const body = field(item, "body");
@@ -135,6 +153,5 @@ function applyOpenState(container) {
         item.classList.toggle("request--open", open);
         body.hidden = !open;
         field(item, "toggle").setAttribute("aria-expanded", String(open));
-        setIcon(field(item, "chevron"), open ? "chevron-down" : "chevron-right");
     });
-}
+};

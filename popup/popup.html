@@ -1,30 +1,31 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Onlooker</title>
-    <link rel="stylesheet" href="../assets/tabler-icons/tabler-icons.min.css" />
-    <link rel="stylesheet" href="../styles/popup.css" />
-    <script type="module" src="popup-app.js"></script>
+    <link rel="stylesheet" href="../styles/popup.css"/>
+    <script type="module" src="popup-app.js" defer></script>
 </head>
 <body>
 
 <section class="view" data-view="overview" hidden>
     <header class="header">
         <div class="brand">
-            <span class="brand__mark"><img src="../assets/logo-on-dark.svg" width="20" height="20" alt="" /></span>
+            <span class="brand__mark"><img src="../assets/logo-on-dark.svg" width="20" height="20" alt=""/></span>
             <span class="brand__name" data-i18n="extensionName"></span>
         </div>
         <span class="header__host" data-field="host"></span>
     </header>
 
     <section class="hero">
-        <p class="hero__headline"><span class="hero__count" data-field="count"></span> <span data-field="headline"></span></p>
+        <p class="hero__headline"><span class="hero__count" data-field="count"></span> <span
+                data-field="headline"></span></p>
         <div class="hero__meta">
             <div class="faces" data-list="faces"></div>
             <span class="recognising" data-field="recognising">
-          <i class="ti ti-fingerprint icon" aria-hidden="true"></i>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use
+                  href="../assets/icons/fingerprint.svg#icon"/></svg>
           <span data-field="recognisingText"></span>
         </span>
         </div>
@@ -38,13 +39,17 @@
           <span class="others__title" data-field="othersTitle"></span>
           <span class="others__hint" data-i18n="overviewOthersHint"></span>
         </span>
-            <i class="ti ti-chevron-down icon others__chevron" aria-hidden="true"></i>
+            <svg class="icon others__chevron" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/chevron-down.svg#icon"/>
+            </svg>
         </button>
         <div class="scroll-group" data-list="others" hidden></div>
     </div>
 
     <footer class="footer">
-        <i class="ti ti-shield-check icon icon--13" aria-hidden="true"></i>
+        <svg class="icon icon--13" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../assets/icons/shield-check.svg#icon"/>
+        </svg>
         <span data-i18n="footerLocal"></span>
     </footer>
 </section>
@@ -52,7 +57,9 @@
 <section class="view" data-view="recipient" hidden>
     <header class="header header--nav">
         <button type="button" class="back-link" data-field="back">
-            <i class="ti ti-arrow-left icon" aria-hidden="true"></i>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/arrow-left.svg#icon"/>
+            </svg>
             <span data-i18n="actionBack"></span>
         </button>
     </header>
@@ -69,7 +76,9 @@
         <section class="facts" data-list="facts"></section>
 
         <section class="notice" data-field="notice">
-            <i class="ti ti-info-circle icon" aria-hidden="true"></i>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/info-circle.svg#icon"/>
+            </svg>
             <span data-field="noticeText"></span>
         </section>
 
@@ -84,7 +93,9 @@
 
         <button type="button" class="tech-link" data-field="technical">
             <span data-field="technicalText"></span>
-            <i class="ti ti-chevron-right icon" aria-hidden="true"></i>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/chevron-right.svg#icon"/>
+            </svg>
         </button>
     </div>
 </section>
@@ -92,7 +103,9 @@
 <section class="view" data-view="technical" hidden>
     <header class="header header--nav">
         <button type="button" class="back-link" data-field="back">
-            <i class="ti ti-arrow-left icon" aria-hidden="true"></i>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/arrow-left.svg#icon"/>
+            </svg>
             <span data-field="backLabel"></span>
         </button>
     </header>
@@ -103,41 +116,52 @@
     </section>
 
     <div class="tabs" role="tablist">
-        <button type="button" class="tab" role="tab" data-field="tabRequests" aria-selected="true"></button>
-        <button type="button" class="tab" role="tab" data-field="tabCookies" aria-selected="false"></button>
+        <button type="button" class="tab" role="tab" id="tab-requests" aria-controls="panel-requests"
+                data-field="tabRequests" aria-selected="true"></button>
+        <button type="button" class="tab" role="tab" id="tab-cookies" aria-controls="panel-cookies"
+                data-field="tabCookies" aria-selected="false" tabindex="-1"></button>
     </div>
 
-    <div class="requests" role="tabpanel" data-list="requests"></div>
-    <div class="requests" role="tabpanel" data-list="cookieItems" hidden></div>
+    <div class="requests" role="tabpanel" id="panel-requests" aria-labelledby="tab-requests" data-list="requests"></div>
+    <div class="requests" role="tabpanel" id="panel-cookies" aria-labelledby="tab-cookies" data-list="cookieItems"
+         hidden></div>
 </section>
 
 <section class="view view--compact" data-view="empty" hidden>
     <header class="header">
         <div class="brand">
-            <span class="brand__mark"><img src="../assets/logo-on-dark.svg" width="20" height="20" alt="" /></span>
+            <span class="brand__mark"><img src="../assets/logo-on-dark.svg" width="20" height="20" alt=""/></span>
             <span class="brand__name" data-i18n="extensionName"></span>
         </div>
         <button type="button" class="icon-btn" data-field="reload" data-i18n-label="actionReload">
-            <i class="ti ti-refresh icon" aria-hidden="true"></i>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/refresh.svg#icon"/>
+            </svg>
         </button>
     </header>
 
     <section class="site-row">
         <span class="eyebrow" data-i18n="visitedPage"></span>
         <div class="site-row__host">
-            <i class="ti ti-lock icon icon--14" aria-hidden="true"></i>
+            <svg class="icon icon--14" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/lock.svg#icon"/>
+            </svg>
             <span data-field="host"></span>
         </div>
     </section>
 
     <div class="state">
-        <span class="state__icon state__icon--success"><i class="ti ti-shield-check icon icon--22" aria-hidden="true"></i></span>
+        <span class="state__icon state__icon--success"><svg class="icon icon--22" viewBox="0 0 24 24"
+                                                            aria-hidden="true"><use
+                href="../assets/icons/shield-check.svg#icon"/></svg></span>
         <span class="state__title" data-i18n="emptyTitle"></span>
         <span class="state__text" data-field="text"></span>
     </div>
 
     <footer class="footer">
-        <i class="ti ti-shield-check icon icon--13" aria-hidden="true"></i>
+        <svg class="icon icon--13" viewBox="0 0 24 24" aria-hidden="true">
+            <use href="../assets/icons/shield-check.svg#icon"/>
+        </svg>
         <span data-i18n="footerLocal"></span>
     </footer>
 </section>
@@ -145,19 +169,21 @@
 <section class="view view--compact" data-view="unavailable" hidden>
     <header class="header">
         <div class="brand">
-            <span class="brand__mark"><img src="../assets/logo-on-dark.svg" width="20" height="20" alt="" /></span>
+            <span class="brand__mark"><img src="../assets/logo-on-dark.svg" width="20" height="20" alt=""/></span>
             <span class="brand__name" data-i18n="extensionName"></span>
         </div>
     </header>
 
     <div class="state" data-field="internal">
-        <span class="state__icon"><i class="ti ti-info-circle icon icon--22" aria-hidden="true"></i></span>
+        <span class="state__icon"><svg class="icon icon--22" viewBox="0 0 24 24" aria-hidden="true"><use
+                href="../assets/icons/info-circle.svg#icon"/></svg></span>
         <span class="state__title" data-i18n="unavailableTitle"></span>
         <span class="state__text" data-i18n="unavailableText"></span>
     </div>
 
     <div class="state" data-field="permission">
-        <span class="state__icon state__icon--warn"><i class="ti ti-lock icon icon--22" aria-hidden="true"></i></span>
+        <span class="state__icon state__icon--warn"><svg class="icon icon--22" viewBox="0 0 24 24" aria-hidden="true"><use
+                href="../assets/icons/lock.svg#icon"/></svg></span>
         <span class="state__title" data-i18n="permissionTitle"></span>
         <span class="state__text" data-i18n="permissionText"></span>
     </div>
@@ -175,7 +201,8 @@
           <span class="card__name" data-field="name"></span>
           <span class="card__sub" data-field="sub"></span>
         </span>
-        <i class="ti ti-chevron-right icon card__chevron" aria-hidden="true"></i>
+        <svg class="icon card__chevron" viewBox="0 0 24 24" aria-hidden="true"><use
+                href="../assets/icons/chevron-right.svg#icon"/></svg>
       </span>
         <span class="chips" data-list="chips"></span>
     </button>
@@ -198,12 +225,13 @@
 </template>
 
 <template id="tpl-chip-warn">
-    <span class="chip chip--warn"><i class="ti icon icon--13" data-field="icon" aria-hidden="true"></i><span data-field="label"></span></span>
+    <span class="chip chip--warn"><svg class="icon icon--13" viewBox="0 0 24 24" data-field="icon" aria-hidden="true"><use/></svg><span
+            data-field="label"></span></span>
 </template>
 
 <template id="tpl-fact">
     <div class="fact">
-        <span class="fact__icon"><i class="ti icon" data-field="icon" aria-hidden="true"></i></span>
+        <span class="fact__icon"><svg class="icon" viewBox="0 0 24 24" data-field="icon" aria-hidden="true"><use/></svg></span>
         <div class="fact__text">
             <span class="fact__title" data-field="title"></span>
             <span class="fact__value" data-field="value"></span>
@@ -213,7 +241,8 @@
 
 <template id="tpl-fact-warn">
     <div class="fact">
-        <span class="fact__icon fact__icon--warn"><i class="ti icon" data-field="icon" aria-hidden="true"></i></span>
+        <span class="fact__icon fact__icon--warn"><svg class="icon" viewBox="0 0 24 24" data-field="icon"
+                                                       aria-hidden="true"><use/></svg></span>
         <div class="fact__text">
             <span class="fact__title" data-field="title"></span>
             <span class="fact__value" data-field="value"></span>
@@ -224,7 +253,9 @@
 <template id="tpl-request">
     <div class="request">
         <button type="button" class="request__toggle" data-field="toggle" aria-expanded="false">
-            <i class="ti ti-chevron-right icon icon--14" data-field="chevron" aria-hidden="true"></i>
+            <svg class="icon icon--14 request__chevron" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/chevron-right.svg#icon"/>
+            </svg>
             <span class="method" data-field="method"></span>
             <span class="request__path" data-field="path"></span>
             <span class="request__time" data-field="time"></span>
@@ -253,7 +284,9 @@
 <template id="tpl-cookie-row">
     <div class="cookie-row">
         <div class="cookie-row__top">
-            <i class="ti ti-cookie icon" aria-hidden="true"></i>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/cookie.svg#icon"/>
+            </svg>
             <span class="cookie-row__name" data-field="name"></span>
             <span class="cookie-row__life" data-field="lifetime"></span>
         </div>
@@ -264,7 +297,9 @@
 <template id="tpl-cookie-item">
     <div class="request">
         <button type="button" class="request__toggle" data-field="toggle" aria-expanded="false">
-            <i class="ti ti-chevron-right icon icon--14" data-field="chevron" aria-hidden="true"></i>
+            <svg class="icon icon--14 request__chevron" viewBox="0 0 24 24" aria-hidden="true">
+                <use href="../assets/icons/chevron-right.svg#icon"/>
+            </svg>
             <span class="request__path" data-field="name"></span>
             <span class="request__time" data-field="domain"></span>
         </button>

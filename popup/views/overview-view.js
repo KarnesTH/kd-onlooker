@@ -1,11 +1,13 @@
-import { showView, field, setText, list, cloneTemplate, setIcon, initial } from "../dom.js";
-import { text, countText } from "../localizer.js";
-import { visibleFindings, isWarning, findingIcon, chipKey } from "../finding-kinds.js";
+"use strict";
+
+import {showView, field, setText, list, cloneTemplate, setIcon, initial} from "../dom.js";
+import {text, countText} from "../localizer.js";
+import {visibleFindings, isWarning, findingIcon, chipKey} from "../finding-kinds.js";
 
 /**
  * Fills the overview with the report; `onSelect(key)` is called when a recipient card is clicked.
  */
-export function renderOverview(report, onSelect) {
+export const renderOverview = (report, onSelect) => {
     const view = showView("overview");
     const total = report.recipients.length;
     const informed = report.recipients.filter((recipient) => visibleFindings(recipient.findings).length > 0);
@@ -36,15 +38,15 @@ export function renderOverview(report, onSelect) {
         othersList.hidden = !othersList.hidden;
         toggle.setAttribute("aria-expanded", String(!othersList.hidden));
     };
-}
+};
 
-function face(label) {
+const face = (label) => {
     const element = cloneTemplate("tpl-face");
     element.textContent = label;
     return element;
-}
+};
 
-function informedCard(recipient, onSelect) {
+const informedCard = (recipient, onSelect) => {
     const findings = visibleFindings(recipient.findings);
     const card = cloneTemplate("tpl-card");
     setText(card, "initial", initial(recipient.name));
@@ -53,20 +55,20 @@ function informedCard(recipient, onSelect) {
     list(card, "chips").replaceChildren(...findings.map(chip));
     card.addEventListener("click", () => onSelect(recipient.key));
     return card;
-}
+};
 
-function staticCard(recipient) {
+const staticCard = (recipient) => {
     const card = cloneTemplate("tpl-card-static");
     setText(card, "initial", initial(recipient.name));
     setText(card, "name", recipient.name);
     setText(card, "sub", recipient.hosts.join(", "));
     return card;
-}
+};
 
-function chip(finding) {
+const chip = (finding) => {
     const warn = isWarning(finding.kind);
     const element = cloneTemplate(warn ? "tpl-chip-warn" : "tpl-chip");
     if (warn) setIcon(field(element, "icon"), findingIcon(finding.kind));
     setText(element, "label", text(chipKey(finding.kind)));
     return element;
-}
+};

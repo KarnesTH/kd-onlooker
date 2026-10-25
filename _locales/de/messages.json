@@ -58,8 +58,8 @@
     "description": "Headline after the count, one company"
   },
   "overviewRecognising": {
-    "message": "$COUNT$ davon erkennen dich wieder",
-    "description": "How many recipients recognise the user",
+    "message": "$COUNT$ davon können dich wiedererkennen",
+    "description": "How many recipients may recognise the user",
     "placeholders": {
       "count": {
         "content": "$1"
@@ -67,8 +67,8 @@
     }
   },
   "overviewRecognisingOne": {
-    "message": "1 davon erkennt dich wieder",
-    "description": "One recipient recognises the user"
+    "message": "1 davon kann dich wiedererkennen",
+    "description": "One recipient may recognise the user"
   },
   "overviewSectionTitle": {
     "message": "Wer was über dich erfahren hat",
@@ -101,7 +101,7 @@
     "description": "Collapsed group, one recipient"
   },
   "overviewOthersHint": {
-    "message": "erfahren nur, dass du hier bist",
+    "message": "erfahren nur, dass du hier bist und welchen Browser du nutzt",
     "description": "Explanation of the collapsed group"
   },
   "recipientLearned": {
@@ -118,7 +118,7 @@
     "description": "Recipient view subtitle, one finding"
   },
   "identifierValue": {
-    "message": "Dieselbe ID kam schon auf $COUNT$ anderen Seiten bei $COMPANY$ an.",
+    "message": "Derselbe ID-artige Wert kam schon auf $COUNT$ anderen Seiten bei $COMPANY$ an.",
     "description": "Detail line of the identifier finding",
     "placeholders": {
       "count": {
@@ -130,7 +130,7 @@
     }
   },
   "identifierValueOne": {
-    "message": "Dieselbe ID kam schon auf 1 anderen Seite bei $COMPANY$ an.",
+    "message": "Derselbe ID-artige Wert kam schon auf 1 anderen Seite bei $COMPANY$ an.",
     "description": "Detail line of the identifier finding, one other site",
     "placeholders": {
       "company": {
@@ -139,7 +139,7 @@
     }
   },
   "identifierInfo": {
-    "message": "Mit der Wiedererkennungs-ID kann $COMPANY$ deine Besuche auf verschiedenen Webseiten miteinander verbinden.",
+    "message": "Ist dieser Wert eine ID, kann $COMPANY$ deine Besuche auf verschiedenen Webseiten miteinander verbinden.",
     "description": "Explanation box below the findings",
     "placeholders": {
       "company": {
@@ -190,7 +190,7 @@
     "description": "Request without parameters"
   },
   "cookiesTitle": {
-    "message": "Cookies auf deinem Gerät",
+    "message": "Mitgeschickte Cookies",
     "description": "Heading of the cookie section"
   },
   "cookiesCount": {
@@ -227,7 +227,7 @@
     }
   },
   "cookiesShared": {
-    "message": "Einige davon bekommt $COMPANY$ auf jeder Seite.",
+    "message": "Einige davon gelten nicht nur für diese Seite – $COMPANY$ kann sie auch auf anderen Seiten bekommen.",
     "description": "Hint when some cookies are unpartitioned",
     "placeholders": {
       "company": {
@@ -236,8 +236,8 @@
     }
   },
   "cookiesNone": {
-    "message": "Keine Cookies gespeichert",
-    "description": "Technical view without cookies"
+    "message": "Keine Cookies mitgeschickt",
+    "description": "Cookie tab without sent cookies"
   },
   "cookieCount": {
     "message": "$COUNT$ Cookies",
@@ -443,14 +443,6 @@
     "message": "Erlaube Onlooker in about:addons den Zugriff auf Webseiten, damit es zeigen kann, wer zuschaut.",
     "description": "Missing host permission text"
   },
-  "chipSite": {
-    "message": "auf welcher Seite du bist",
-    "description": "Chip label for the site finding"
-  },
-  "titleSite": {
-    "message": "Auf welcher Seite du bist",
-    "description": "Row title for the site finding"
-  },
   "chipPage": {
     "message": "welche Seite du ansiehst",
     "description": "Chip label for the page finding"
@@ -491,14 +483,6 @@
     "message": "Deine Zeitzone",
     "description": "Row title for the timezone finding"
   },
-  "chipUseragent": {
-    "message": "Browser und System",
-    "description": "Chip label for the useragent finding"
-  },
-  "titleUseragent": {
-    "message": "Dein Browser und System",
-    "description": "Row title for the useragent finding"
-  },
   "chipCookies": {
     "message": "Cookies",
     "description": "Chip label for the cookies finding"
@@ -508,11 +492,11 @@
     "description": "Row title for the cookies finding"
   },
   "chipIdentifier": {
-    "message": "erkennt dich wieder",
+    "message": "kann dich wiedererkennen",
     "description": "Chip label for the identifier finding"
   },
   "titleIdentifier": {
-    "message": "Eine ID, die dich wiedererkennt",
+    "message": "Ein Wert, der dich wiedererkennen kann",
     "description": "Row title for the identifier finding"
   }
 }

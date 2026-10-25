@@ -1,15 +1,20 @@
-import { resolveCompany } from "./company-resolver.js";
-import { readTab } from "./tab-store.js";
-import { isIdCandidate, hash, lookupIds } from "./id-tracker.js";
-import { readCookies } from "./cookie-reader.js";
+"use strict";
+
+import {resolveCompany} from "./company-resolver.js";
+import {readTab} from "./tab-store.js";
+import {lookupIds} from "./id-tracker.js";
+import {readCookies} from "./cookie-reader.js";
+
+const MIN_TITLE = 8;
 
 /**
  * Builds the popup report of a tab: recipients with their findings and requests, sorted by the
- * number of findings. Without a record, the status is "unavailable".
+ * number of findings. The page profile is requested from the content script of the tab. Without a
+ * record, the status is "unavailable".
  */
-export async function buildReport(tabId) {
+export const buildReport = async (tabId) => {
     const record = await readTab(tabId);
-    if (!record) return { status: "unavailable", pageHost: "", recognisingCount: 0, recipients: [] };
+    if (!record) return {status: "unavailable", pageHost: "", recognisingCount: 0, recipients: []};
 
     const groups = new Map();
     for (const request of record.requests) {
@@ -17,9 +22,9 @@ export async function buildReport(tabId) {
         groups.get(request.recipientKey).push(request);
     }
 
-    const matchers = profileMatchers(record);
-    const recipients = [];
-    for (const requests of groups.values()) recipients.push(await evaluateRecipient(requests, record, matchers));
+    const profile = await browser.tabs.sendMessage(tabId, {type: "getProfile"}, {frameId: 0}).catch(() => null);
+    const matchers = profileMatchers(record.pageUrl, profile);
+    const recipients = await Promise.all([...groups.values()].map((requests) => evaluateRecipient(requests, record, profile, matchers)));
     recipients.sort((a, b) => b.findings.length - a.findings.length || b.requests.length - a.requests.length);
 
     return {
@@ -28,51 +33,50 @@ export async function buildReport(tabId) {
         recognisingCount: recipients.filter((recipient) => recipient.findings.some((finding) => finding.kind === "identifier")).length,
         recipients
     };
-}
+};
 
 /**
  * Collects the findings of one recipient from its requests, marks every parameter that carries
- * a finding, and adds the recipient's cookies.
+ * a finding, and adds the cookies the recipient was sent.
  */
-async function evaluateRecipient(requests, record, matchers) {
+const evaluateRecipient = async (requests, record, profile, matchers) => {
     const company = resolveCompany(requests[0].host);
-    const findings = new Map([["site", { kind: "site", value: record.pageHost }]]);
+    const findings = new Map();
     const cookieNames = new Set();
+    const sentCookies = [];
     const paramsByHash = new Map();
     const shown = [];
 
     for (const request of requests) {
-        const params = request.params.map((param) => ({ key: param.key, value: param.value, hit: false }));
+        const params = request.params.map((param) => ({key: param.key, value: param.value, hit: false}));
 
         request.params.forEach((param, index) => {
             for (const matcher of matchers) {
                 if (matcher.test(param.value) || (param.decoded && matcher.test(param.decoded))) {
-                    findings.set(matcher.kind, { kind: matcher.kind, value: matcher.value });
+                    findings.set(matcher.kind, {kind: matcher.kind, value: matcher.value});
                     params[index].hit = true;
                 }
             }
+            for (const idHash of param.idHashes ?? []) {
+                if (!paramsByHash.has(idHash)) paramsByHash.set(idHash, []);
+                paramsByHash.get(idHash).push(params[index]);
+            }
         });
-        matchScreenPair(request, record.profile, params, findings);
+        matchScreenPair(request, profile, params, findings);
         matchReferer(request, findings);
 
         for (const cookie of request.cookies) {
             cookieNames.add(cookie.name);
-            if (cookie.candidate && !paramsByHash.has(cookie.valueHash)) paramsByHash.set(cookie.valueHash, []);
-        }
-        for (const [index, param] of request.params.entries()) {
-            for (const value of [param.value, param.decoded]) {
-                if (!isIdCandidate(value)) continue;
-                const valueHash = await hash(value);
-                if (!paramsByHash.has(valueHash)) paramsByHash.set(valueHash, []);
-                paramsByHash.get(valueHash).push(params[index]);
-            }
+            sentCookies.push({name: cookie.name, valueHash: cookie.valueHash});
+            if (cookie.idHash && !paramsByHash.has(cookie.idHash)) paramsByHash.set(cookie.idHash, []);
         }
 
+        const url = new URL(request.url);
         shown.push({
             requestId: request.requestId,
             method: request.method,
             url: request.url,
-            path: request.path,
+            path: url.pathname + url.search,
             timeStamp: request.timeStamp,
             params,
             cookieCount: request.cookies.length,
@@ -81,18 +85,21 @@ async function evaluateRecipient(requests, record, matchers) {
         });
     }
 
-    if (cookieNames.size > 0) findings.set("cookies", { kind: "cookies", value: cookieNames.size });
+    if (cookieNames.size > 0) findings.set("cookies", {kind: "cookies", value: cookieNames.size});
 
-    const { otherSites, hits } = await lookupIds(company.key, [...paramsByHash.keys()], record.pageHost);
+    const hosts = [...new Set(requests.map((request) => request.host))];
+    const [{otherSites, hits}, cookies] = await Promise.all([
+        lookupIds(company.key, [...paramsByHash.keys()], record.pageHost),
+        readCookies(hosts, record.pageHost, sentCookies)
+    ]);
     if (otherSites > 0) {
-        findings.set("identifier", { kind: "identifier", value: null, otherSites });
-        for (const valueHash of hits) {
-            for (const param of paramsByHash.get(valueHash)) param.hit = true;
+        findings.set("identifier", {kind: "identifier", value: null, otherSites});
+        for (const idHash of hits) {
+            for (const param of paramsByHash.get(idHash)) param.hit = true;
         }
     }
 
     shown.sort((a, b) => a.timeStamp - b.timeStamp);
-    const hosts = [...new Set(requests.map((request) => request.host))];
     return {
         key: company.key,
         name: company.name,
@@ -100,17 +107,16 @@ async function evaluateRecipient(requests, record, matchers) {
         hosts,
         findings: [...findings.values()],
         requests: shown,
-        cookies: await readCookies(hosts, record.pageHost)
+        cookies
     };
-}
+};
 
 /**
- * Returns `{ kind, value, test(value) }` for page, title, screen, language, time zone, and user
- * agent. Without a profile, only the page matcher based on the navigation URL is returned.
+ * Returns `{ kind, value, test(value) }` for page, title, screen, language and time zone. The page
+ * matcher is built from `pageUrl`; without a profile, it is the only matcher.
  */
-function profileMatchers(record) {
-    const profile = record.profile;
-    const page = new URL(profile?.url ?? record.pageUrl);
+export const profileMatchers = (pageUrl, profile) => {
+    const page = new URL(pageUrl);
     const fullUrl = (page.origin + page.pathname + page.search).replace(/\/$/, "").toLowerCase();
     const hostPath = (page.hostname + page.pathname).replace(/\/$/, "").toLowerCase();
     const path = page.pathname.replace(/\/$/, "").toLowerCase();
@@ -125,52 +131,71 @@ function profileMatchers(record) {
     if (!profile) return matchers;
 
     const title = profile.title.trim();
-    if (title.length >= 4) {
-        matchers.push({ kind: "title", value: title, test: (value) => value.toLowerCase().includes(title.toLowerCase()) });
+    if (title.length >= MIN_TITLE) {
+        matchers.push({
+            kind: "title",
+            value: title,
+            test: (value) => value.toLowerCase().includes(title.toLowerCase())
+        });
     }
 
     const screen = new RegExp(`(^|\\D)${profile.screenWidth}\\s*[x*×,]\\s*${profile.screenHeight}(\\D|$)`, "i");
-    matchers.push({ kind: "screen", value: `${profile.screenWidth}x${profile.screenHeight}`, test: (value) => screen.test(value) });
+    matchers.push({
+        kind: "screen",
+        value: `${profile.screenWidth}x${profile.screenHeight}`,
+        test: (value) => screen.test(value)
+    });
 
     const language = profile.language.replace(/_/g, "-");
     if (language.includes("-")) {
         const pattern = new RegExp(`(^|[^a-z])${language.replace(/-/g, "[-_]")}([^a-z]|$)`, "i");
-        matchers.push({ kind: "language", value: language, test: (value) => pattern.test(value) });
+        matchers.push({kind: "language", value: language, test: (value) => pattern.test(value)});
+    } else if (language) {
+        matchers.push({
+            kind: "language",
+            value: language,
+            test: (value) => value.trim().toLowerCase() === language.toLowerCase()
+        });
     }
 
     const timeZone = profile.timeZone;
     if (timeZone.length >= 4) {
-        matchers.push({ kind: "timezone", value: timeZone, test: (value) => value.toLowerCase().includes(timeZone.toLowerCase()) });
+        matchers.push({
+            kind: "timezone",
+            value: timeZone,
+            test: (value) => value.toLowerCase().includes(timeZone.toLowerCase())
+        });
     }
-
-    matchers.push({ kind: "useragent", value: profile.userAgent, test: (value) => value.includes(profile.userAgent) });
     return matchers;
-}
+};
 
 /**
  * Adds the screen finding when width and height appear as two separate parameter values.
  */
-function matchScreenPair(request, profile, params, findings) {
+const matchScreenPair = (request, profile, params, findings) => {
     if (!profile) return;
     const width = request.params.findIndex((param) => param.value === String(profile.screenWidth));
     const height = request.params.findIndex((param) => param.value === String(profile.screenHeight));
     if (width < 0 || height < 0) return;
-    findings.set("screen", { kind: "screen", value: `${profile.screenWidth}x${profile.screenHeight}` });
+    findings.set("screen", {kind: "screen", value: `${profile.screenWidth}x${profile.screenHeight}`});
     params[width].hit = true;
     params[height].hit = true;
-}
+};
 
 /**
  * Adds the page finding when the Referer carries a path, not just the origin.
  */
-function matchReferer(request, findings) {
+const matchReferer = (request, findings) => {
     if (!request.referer) return;
     try {
         const referer = new URL(request.referer);
         if (referer.pathname.length > 1 || referer.search) {
-            findings.set("page", { kind: "page", value: (referer.hostname.replace(/^www\./, "") + referer.pathname).replace(/\/$/, "") });
+            findings.set("page", {
+                kind: "page",
+                value: (referer.hostname.replace(/^www\./, "") + referer.pathname).replace(/\/$/, "")
+            });
         }
     } catch {
         // malformed Referer header
     }
-}
+};

@@ -20,21 +20,22 @@
 
 - Counts the companies a page informs about your visit and shows the number on the toolbar icon.
 - Explains in plain language what each company learns: page, title, screen size, language, time zone, browser, cookies.
-- Recognises IDs that follow you across sites.
-- Shows the cookies each company keeps on your device, with lifetime and decoded content.
+- Spots ID-like values that reach the same company on several sites.
+- Shows the cookies each company was sent, with lifetime and decoded content.
 - Technical details with every request, parameter, header and raw cookie value.
 - English and German.
 
 ## Privacy
 
-Onlooker only reads. It blocks nothing, changes nothing and has no network access of its own. Everything is evaluated locally; IDs and sites are stored only as SHA-256 hashes, cookie values are never stored.
+Onlooker only reads. It blocks nothing, changes nothing and has no network access of its own. Everything is evaluated locally. The requests of open tabs are kept in memory only. On disk, IDs are stored as SHA-256 hashes and sites as short salted hashes that cannot be mapped back to a single site; cookie values are never stored. Nothing is written to disk from private windows.
 
 ## Development
 
 ```sh
 web-ext run
-web-ext lint --ignore-files docs
-web-ext build --ignore-files docs
+web-ext lint --ignore-files docs tests
+web-ext build --ignore-files docs tests
+node --test
 ```
 
 ## Docs

@@ -58,8 +58,8 @@
     "description": "Headline after the count, one company"
   },
   "overviewRecognising": {
-    "message": "$COUNT$ of them recognise you",
-    "description": "How many recipients recognise the user",
+    "message": "$COUNT$ of them may recognise you",
+    "description": "How many recipients may recognise the user",
     "placeholders": {
       "count": {
         "content": "$1"
@@ -67,8 +67,8 @@
     }
   },
   "overviewRecognisingOne": {
-    "message": "1 of them recognises you",
-    "description": "One recipient recognises the user"
+    "message": "1 of them may recognise you",
+    "description": "One recipient may recognise the user"
   },
   "overviewSectionTitle": {
     "message": "What they learned about you",
@@ -101,7 +101,7 @@
     "description": "Collapsed group, one recipient"
   },
   "overviewOthersHint": {
-    "message": "only know that you're here",
+    "message": "only know that you're here and which browser you use",
     "description": "Explanation of the collapsed group"
   },
   "recipientLearned": {
@@ -118,7 +118,7 @@
     "description": "Recipient view subtitle, one finding"
   },
   "identifierValue": {
-    "message": "The same ID already reached $COMPANY$ on $COUNT$ other sites.",
+    "message": "The same ID-like value already reached $COMPANY$ on $COUNT$ other sites.",
     "description": "Detail line of the identifier finding",
     "placeholders": {
       "count": {
@@ -130,7 +130,7 @@
     }
   },
   "identifierValueOne": {
-    "message": "The same ID already reached $COMPANY$ on 1 other site.",
+    "message": "The same ID-like value already reached $COMPANY$ on 1 other site.",
     "description": "Detail line of the identifier finding, one other site",
     "placeholders": {
       "company": {
@@ -139,7 +139,7 @@
     }
   },
   "identifierInfo": {
-    "message": "With this ID, $COMPANY$ can link your visits across different websites.",
+    "message": "If this value is an ID, $COMPANY$ can link your visits across different websites.",
     "description": "Explanation box below the findings",
     "placeholders": {
       "company": {
@@ -190,7 +190,7 @@
     "description": "Request without parameters"
   },
   "cookiesTitle": {
-    "message": "Cookies on your device",
+    "message": "Cookies sent along",
     "description": "Heading of the cookie section"
   },
   "cookiesCount": {
@@ -227,7 +227,7 @@
     }
   },
   "cookiesShared": {
-    "message": "Some of them reach $COMPANY$ on every site.",
+    "message": "Some of them aren't limited to this site, so $COMPANY$ can receive them on other sites too.",
     "description": "Hint when some cookies are unpartitioned",
     "placeholders": {
       "company": {
@@ -236,8 +236,8 @@
     }
   },
   "cookiesNone": {
-    "message": "No cookies stored",
-    "description": "Technical view without cookies"
+    "message": "No cookies sent",
+    "description": "Cookie tab without sent cookies"
   },
   "cookieCount": {
     "message": "$COUNT$ cookies",
@@ -443,14 +443,6 @@
     "message": "Allow Onlooker to access websites in about:addons so it can show who's watching.",
     "description": "Missing host permission text"
   },
-  "chipSite": {
-    "message": "the site you're on",
-    "description": "Chip label for the site finding"
-  },
-  "titleSite": {
-    "message": "The site you're on",
-    "description": "Row title for the site finding"
-  },
   "chipPage": {
     "message": "which page you're viewing",
     "description": "Chip label for the page finding"
@@ -491,14 +483,6 @@
     "message": "Your time zone",
     "description": "Row title for the timezone finding"
   },
-  "chipUseragent": {
-    "message": "browser and system",
-    "description": "Chip label for the useragent finding"
-  },
-  "titleUseragent": {
-    "message": "Your browser and system",
-    "description": "Row title for the useragent finding"
-  },
   "chipCookies": {
     "message": "cookies",
     "description": "Chip label for the cookies finding"
@@ -508,11 +492,11 @@
     "description": "Row title for the cookies finding"
   },
   "chipIdentifier": {
-    "message": "recognises you",
+    "message": "may recognise you",
     "description": "Chip label for the identifier finding"
   },
   "titleIdentifier": {
-    "message": "An ID that recognises you",
+    "message": "A value that may recognise you",
     "description": "Row title for the identifier finding"
   }
 }

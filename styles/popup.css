@@ -23,8 +23,8 @@
     --radius-md: 6px;
     --radius-lg: 10px;
 
-    --font-sans: "Geist", system-ui, sans-serif;
-    --font-mono: "Geist Mono", ui-monospace, monospace;
+    --font-sans: system-ui, sans-serif;
+    --font-mono: ui-monospace, monospace;
 }
 
 * {
@@ -63,21 +63,25 @@ code {
 }
 
 .icon {
-    font-size: 16px;
-    line-height: 1;
+    display: block;
+    width: 16px;
+    height: 16px;
     flex: none;
 }
 
 .icon--13 {
-    font-size: 13px;
+    width: 13px;
+    height: 13px;
 }
 
 .icon--14 {
-    font-size: 14px;
+    width: 14px;
+    height: 14px;
 }
 
 .icon--22 {
-    font-size: 22px;
+    width: 22px;
+    height: 22px;
 }
 
 .scroll-group {
@@ -580,6 +584,14 @@ code {
 .request--open .request__toggle {
     background: var(--surface-raised);
     color: var(--text-secondary);
+}
+
+.request__chevron {
+    transition: transform 0.15s ease;
+}
+
+.request--open .request__chevron {
+    transform: rotate(90deg);
 }
 
 .method {
