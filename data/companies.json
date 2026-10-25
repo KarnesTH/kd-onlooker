@@ -1,0 +1,150 @@
+{
+  "google": {
+    "name": "Google",
+    "hosts": ["google.com", "google.de", "google.at", "google.ch", "googleapis.com", "gstatic.com", "google-analytics.com", "googletagmanager.com", "googletagservices.com", "googlesyndication.com", "googleadservices.com", "doubleclick.net", "googleusercontent.com", "googlevideo.com", "youtube.com", "youtube-nocookie.com", "ytimg.com", "recaptcha.net", "app-measurement.com"]
+  },
+  "meta": {
+    "name": "Meta (Facebook)",
+    "hosts": ["facebook.com", "facebook.net", "fbcdn.net", "fbsbx.com", "instagram.com", "cdninstagram.com", "whatsapp.com", "whatsapp.net"]
+  },
+  "microsoft": {
+    "name": "Microsoft",
+    "hosts": ["microsoft.com", "clarity.ms", "bing.com", "bing.net", "live.com", "msn.com", "azureedge.net", "linkedin.com", "licdn.com"]
+  },
+  "amazon": {
+    "name": "Amazon",
+    "hosts": ["amazon-adsystem.com", "amazon.com", "amazon.de", "media-amazon.com", "ssl-images-amazon.com", "cloudfront.net", "amazonaws.com"]
+  },
+  "apple": {
+    "name": "Apple",
+    "hosts": ["apple.com", "icloud.com", "mzstatic.com"]
+  },
+  "tiktok": {
+    "name": "TikTok",
+    "hosts": ["tiktok.com", "tiktokcdn.com", "byteoversea.com", "ttwstatic.com"]
+  },
+  "x": {
+    "name": "X (Twitter)",
+    "hosts": ["twitter.com", "x.com", "t.co", "twimg.com", "ads-twitter.com"]
+  },
+  "pinterest": {
+    "name": "Pinterest",
+    "hosts": ["pinterest.com", "pinimg.com"]
+  },
+  "snap": {
+    "name": "Snap",
+    "hosts": ["snapchat.com", "sc-static.net"]
+  },
+  "reddit": {
+    "name": "Reddit",
+    "hosts": ["reddit.com", "redditmedia.com", "redditstatic.com"]
+  },
+  "yandex": {
+    "name": "Yandex",
+    "hosts": ["yandex.ru", "yandex.com", "yandex.net"]
+  },
+  "adobe": {
+    "name": "Adobe",
+    "hosts": ["adobe.com", "adobedtm.com", "omtrdc.net", "demdex.net", "everesttech.net", "typekit.net"]
+  },
+  "criteo": {
+    "name": "Criteo",
+    "hosts": ["criteo.com", "criteo.net"]
+  },
+  "taboola": {
+    "name": "Taboola",
+    "hosts": ["taboola.com"]
+  },
+  "outbrain": {
+    "name": "Outbrain",
+    "hosts": ["outbrain.com"]
+  },
+  "hotjar": {
+    "name": "Hotjar",
+    "hosts": ["hotjar.com", "hotjar.io"]
+  },
+  "hubspot": {
+    "name": "HubSpot",
+    "hosts": ["hubspot.com", "hs-scripts.com", "hs-analytics.net", "hs-banner.com", "hsforms.net", "hubapi.com", "hscollectedforms.net"]
+  },
+  "mixpanel": {
+    "name": "Mixpanel",
+    "hosts": ["mixpanel.com"]
+  },
+  "segment": {
+    "name": "Segment",
+    "hosts": ["segment.com", "segment.io"]
+  },
+  "amplitude": {
+    "name": "Amplitude",
+    "hosts": ["amplitude.com"]
+  },
+  "intercom": {
+    "name": "Intercom",
+    "hosts": ["intercom.io", "intercomcdn.com"]
+  },
+  "zendesk": {
+    "name": "Zendesk",
+    "hosts": ["zendesk.com", "zdassets.com"]
+  },
+  "onetrust": {
+    "name": "OneTrust",
+    "hosts": ["onetrust.com", "cookielaw.org"]
+  },
+  "usercentrics": {
+    "name": "Usercentrics",
+    "hosts": ["usercentrics.eu", "cookiebot.com"]
+  },
+  "sentry": {
+    "name": "Sentry",
+    "hosts": ["sentry.io", "sentry-cdn.com"]
+  },
+  "newrelic": {
+    "name": "New Relic",
+    "hosts": ["newrelic.com", "nr-data.net"]
+  },
+  "datadog": {
+    "name": "Datadog",
+    "hosts": ["datadoghq.com", "datadoghq.eu"]
+  },
+  "cloudflare": {
+    "name": "Cloudflare",
+    "hosts": ["cloudflare.com", "cloudflareinsights.com", "cloudflare-dns.com"]
+  },
+  "akamai": {
+    "name": "Akamai",
+    "hosts": ["akamaihd.net", "akamaized.net", "akamai.net", "edgekey.net"]
+  },
+  "fastly": {
+    "name": "Fastly",
+    "hosts": ["fastly.net", "fastly.com"]
+  },
+  "jsdelivr": {
+    "name": "jsDelivr",
+    "hosts": ["jsdelivr.net"]
+  },
+  "unpkg": {
+    "name": "unpkg",
+    "hosts": ["unpkg.com"]
+  },
+  "shopify": {
+    "name": "Shopify",
+    "hosts": ["shopify.com", "shopifysvc.com"]
+  },
+  "stripe": {
+    "name": "Stripe",
+    "hosts": ["stripe.com", "stripe.network"]
+  },
+  "paypal": {
+    "name": "PayPal",
+    "hosts": ["paypal.com", "paypalobjects.com"]
+  },
+  "vimeo": {
+    "name": "Vimeo",
+    "hosts": ["vimeo.com", "vimeocdn.com"]
+  },
+  "spotify": {
+    "name": "Spotify",
+    "hosts": ["spotify.com", "scdn.co"]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
+  "version": "0.1.0",
+  "default_locale": "en",
+  "icons": {
+    "48": "assets/logo-on-light.svg",
+    "96": "assets/logo-on-light.svg"
+  },
+  "permissions": ["webRequest", "storage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "scripts": ["background/main.js"],
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/page-probe.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "__MSG_extensionName__",
+    "default_popup": "popup/popup.html",
+    "default_icon": "assets/logo-on-light.svg",
+    "theme_icons": [
+      { "light": "assets/logo-on-dark.svg", "dark": "assets/logo-on-light.svg", "size": 16 },
+      { "light": "assets/logo-on-dark.svg", "dark": "assets/logo-on-light.svg", "size": 32 }
+    ]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "kd-onlooker@karnes-development",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
+    }
+  }
+}

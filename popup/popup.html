@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Onlooker</title>
+    <link rel="stylesheet" href="../assets/tabler-icons/tabler-icons.min.css" />
+    <link rel="stylesheet" href="../styles/popup.css" />
+    <script type="module" src="popup-app.js"></script>
+</head>
+<body>
+
+<section class="view" data-view="overview" hidden>
+    <header class="header">
+        <div class="brand">
+            <span class="brand__mark"><img src="../assets/logo-on-dark.svg" width="20" height="20" alt="" /></span>
+            <span class="brand__name" data-i18n="extensionName"></span>
+        </div>
+        <span class="header__host" data-field="host"></span>
+    </header>
+
+    <section class="hero">
+        <p class="hero__headline"><span class="hero__count" data-field="count"></span> <span data-field="headline"></span></p>
+        <div class="hero__meta">
+            <div class="faces" data-list="faces"></div>
+            <span class="recognising" data-field="recognising">
+          <i class="ti ti-fingerprint icon" aria-hidden="true"></i>
+          <span data-field="recognisingText"></span>
+        </span>
+        </div>
+    </section>
+
+    <div class="scroll">
+        <span class="section-title" data-field="sectionTitle" data-i18n="overviewSectionTitle"></span>
+        <div class="scroll-group" data-list="informed"></div>
+        <button type="button" class="others" data-field="othersToggle" aria-expanded="false">
+        <span class="others__text">
+          <span class="others__title" data-field="othersTitle"></span>
+          <span class="others__hint" data-i18n="overviewOthersHint"></span>
+        </span>
+            <i class="ti ti-chevron-down icon others__chevron" aria-hidden="true"></i>
+        </button>
+        <div class="scroll-group" data-list="others" hidden></div>
+    </div>
+
+    <footer class="footer">
+        <i class="ti ti-shield-check icon icon--13" aria-hidden="true"></i>
+        <span data-i18n="footerLocal"></span>
+    </footer>
+</section>
+
+<section class="view" data-view="recipient" hidden>
+    <header class="header header--nav">
+        <button type="button" class="back-link" data-field="back">
+            <i class="ti ti-arrow-left icon" aria-hidden="true"></i>
+            <span data-i18n="actionBack"></span>
+        </button>
+    </header>
+
+    <div class="page">
+        <section class="recipient-head">
+            <span class="avatar avatar--large" data-field="initial"></span>
+            <div class="recipient-head__text">
+                <span class="recipient-head__name" data-field="name"></span>
+                <span class="recipient-head__sub" data-field="learned"></span>
+            </div>
+        </section>
+
+        <section class="facts" data-list="facts"></section>
+
+        <section class="notice" data-field="notice">
+            <i class="ti ti-info-circle icon" aria-hidden="true"></i>
+            <span data-field="noticeText"></span>
+        </section>
+
+        <button type="button" class="tech-link" data-field="technical">
+            <span data-field="technicalText"></span>
+            <i class="ti ti-chevron-right icon" aria-hidden="true"></i>
+        </button>
+    </div>
+</section>
+
+<section class="view" data-view="technical" hidden>
+    <header class="header header--nav">
+        <button type="button" class="back-link" data-field="back">
+            <i class="ti ti-arrow-left icon" aria-hidden="true"></i>
+            <span data-field="backLabel"></span>
+        </button>
+    </header>
+
+    <section class="tech-head">
+        <span class="tech-head__title" data-i18n="technicalTitle"></span>
+        <span class="tech-head__sub" data-field="sub"></span>
+    </section>
+
+    <div class="requests" data-list="requests"></div>
+</section>
+
+<section class="view view--compact" data-view="empty" hidden>
+    <header class="header">
+        <div class="brand">
+            <span class="brand__mark"><img src="../assets/logo-on-dark.svg" width="20" height="20" alt="" /></span>
+            <span class="brand__name" data-i18n="extensionName"></span>
+        </div>
+        <button type="button" class="icon-btn" data-field="reload" data-i18n-label="actionReload">
+            <i class="ti ti-refresh icon" aria-hidden="true"></i>
+        </button>
+    </header>
+
+    <section class="site-row">
+        <span class="eyebrow" data-i18n="visitedPage"></span>
+        <div class="site-row__host">
+            <i class="ti ti-lock icon icon--14" aria-hidden="true"></i>
+            <span data-field="host"></span>
+        </div>
+    </section>
+
+    <div class="state">
+        <span class="state__icon state__icon--success"><i class="ti ti-shield-check icon icon--22" aria-hidden="true"></i></span>
+        <span class="state__title" data-i18n="emptyTitle"></span>
+        <span class="state__text" data-field="text"></span>
+    </div>
+
+    <footer class="footer">
+        <i class="ti ti-shield-check icon icon--13" aria-hidden="true"></i>
+        <span data-i18n="footerLocal"></span>
+    </footer>
+</section>
+
+<section class="view view--compact" data-view="unavailable" hidden>
+    <header class="header">
+        <div class="brand">
+            <span class="brand__mark"><img src="../assets/logo-on-dark.svg" width="20" height="20" alt="" /></span>
+            <span class="brand__name" data-i18n="extensionName"></span>
+        </div>
+    </header>
+
+    <div class="state" data-field="internal">
+        <span class="state__icon"><i class="ti ti-info-circle icon icon--22" aria-hidden="true"></i></span>
+        <span class="state__title" data-i18n="unavailableTitle"></span>
+        <span class="state__text" data-i18n="unavailableText"></span>
+    </div>
+
+    <div class="state" data-field="permission">
+        <span class="state__icon state__icon--warn"><i class="ti ti-lock icon icon--22" aria-hidden="true"></i></span>
+        <span class="state__title" data-i18n="permissionTitle"></span>
+        <span class="state__text" data-i18n="permissionText"></span>
+    </div>
+</section>
+
+<template id="tpl-face">
+    <span class="face"></span>
+</template>
+
+<template id="tpl-card">
+    <button type="button" class="card">
+      <span class="card__top">
+        <span class="avatar" data-field="initial"></span>
+        <span class="card__text">
+          <span class="card__name" data-field="name"></span>
+          <span class="card__sub" data-field="sub"></span>
+        </span>
+        <i class="ti ti-chevron-right icon card__chevron" aria-hidden="true"></i>
+      </span>
+        <span class="chips" data-list="chips"></span>
+    </button>
+</template>
+
+<template id="tpl-card-static">
+    <div class="card card--static">
+      <span class="card__top">
+        <span class="avatar" data-field="initial"></span>
+        <span class="card__text">
+          <span class="card__name" data-field="name"></span>
+          <span class="card__sub" data-field="sub"></span>
+        </span>
+      </span>
+    </div>
+</template>
+
+<template id="tpl-chip">
+    <span class="chip"><span data-field="label"></span></span>
+</template>
+
+<template id="tpl-chip-warn">
+    <span class="chip chip--warn"><i class="ti icon icon--13" data-field="icon" aria-hidden="true"></i><span data-field="label"></span></span>
+</template>
+
+<template id="tpl-fact">
+    <div class="fact">
+        <span class="fact__icon"><i class="ti icon" data-field="icon" aria-hidden="true"></i></span>
+        <div class="fact__text">
+            <span class="fact__title" data-field="title"></span>
+            <span class="fact__value" data-field="value"></span>
+        </div>
+    </div>
+</template>
+
+<template id="tpl-fact-warn">
+    <div class="fact">
+        <span class="fact__icon fact__icon--warn"><i class="ti icon" data-field="icon" aria-hidden="true"></i></span>
+        <div class="fact__text">
+            <span class="fact__title" data-field="title"></span>
+            <span class="fact__value" data-field="value"></span>
+        </div>
+    </div>
+</template>
+
+<template id="tpl-request">
+    <div class="request">
+        <button type="button" class="request__toggle" data-field="toggle" aria-expanded="false">
+            <i class="ti ti-chevron-right icon icon--14" data-field="chevron" aria-hidden="true"></i>
+            <span class="method" data-field="method"></span>
+            <span class="request__path" data-field="path"></span>
+            <span class="request__time" data-field="time"></span>
+        </button>
+        <div class="request__body" data-field="body" hidden>
+            <code class="url-box" data-field="url"></code>
+            <div class="kv-block">
+                <span class="eyebrow" data-i18n="technicalParameters"></span>
+                <div class="kv" data-list="params"></div>
+            </div>
+            <div class="kv-block" data-field="headersBlock">
+                <span class="eyebrow" data-i18n="technicalSentAlong"></span>
+                <div class="kv" data-list="headers"></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="tpl-kv-row">
+    <div class="kv__row">
+        <span class="kv__key" data-field="key"></span>
+        <span class="kv__value" data-field="value"></span>
+    </div>
+</template>
+
+<template id="tpl-kv-empty">
+    <div class="kv__empty" data-i18n="technicalNoParameters"></div>
+</template>
+
+</body>
+</html>

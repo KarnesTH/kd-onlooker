@@ -1,0 +1,314 @@
+{
+  "extensionName": {
+    "message": "Onlooker",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "See who's watching: reveals what websites share about you with third parties.",
+    "description": "Store and add-on manager description"
+  },
+  "footerLocal": {
+    "message": "Analysed locally only, nothing leaves your browser.",
+    "description": "Popup footer"
+  },
+  "actionReload": {
+    "message": "Reload",
+    "description": "Reload button label"
+  },
+  "actionBack": {
+    "message": "Overview",
+    "description": "Back link to the overview"
+  },
+  "visitedPage": {
+    "message": "Visited page",
+    "description": "Label above the visited host"
+  },
+  "badgeTitle": {
+    "message": "Onlooker: $COUNT$ companies know you're here",
+    "description": "Toolbar tooltip with recipient count",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "badgeTitleOne": {
+    "message": "Onlooker: 1 company knows you're here",
+    "description": "Toolbar tooltip, one recipient"
+  },
+  "overviewCompanies": {
+    "message": "$COUNT$ companies",
+    "description": "Highlighted count in the headline",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "overviewCompaniesOne": {
+    "message": "1 company",
+    "description": "Highlighted count, one company"
+  },
+  "overviewHeadlineRest": {
+    "message": "know you're here right now.",
+    "description": "Headline after the count"
+  },
+  "overviewHeadlineRestOne": {
+    "message": "knows you're here right now.",
+    "description": "Headline after the count, one company"
+  },
+  "overviewRecognising": {
+    "message": "$COUNT$ of them recognise you",
+    "description": "How many recipients recognise the user",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "overviewRecognisingOne": {
+    "message": "1 of them recognises you",
+    "description": "One recipient recognises the user"
+  },
+  "overviewSectionTitle": {
+    "message": "What they learned about you",
+    "description": "Heading above the recipient cards"
+  },
+  "recipientLearns": {
+    "message": "learns $COUNT$ things",
+    "description": "Card subtitle",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "recipientLearnsOne": {
+    "message": "learns 1 thing",
+    "description": "Card subtitle, one finding"
+  },
+  "overviewOthers": {
+    "message": "$COUNT$ more companies",
+    "description": "Collapsed group of recipients with only the site finding",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "overviewOthersOne": {
+    "message": "1 more company",
+    "description": "Collapsed group, one recipient"
+  },
+  "overviewOthersHint": {
+    "message": "only know that you're here",
+    "description": "Explanation of the collapsed group"
+  },
+  "recipientLearned": {
+    "message": "learned $COUNT$ things on this visit",
+    "description": "Recipient view subtitle",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "recipientLearnedOne": {
+    "message": "learned 1 thing on this visit",
+    "description": "Recipient view subtitle, one finding"
+  },
+  "identifierValue": {
+    "message": "The same ID already reached $COMPANY$ on $COUNT$ other sites.",
+    "description": "Detail line of the identifier finding",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "company": {
+        "content": "$2"
+      }
+    }
+  },
+  "identifierValueOne": {
+    "message": "The same ID already reached $COMPANY$ on 1 other site.",
+    "description": "Detail line of the identifier finding, one other site",
+    "placeholders": {
+      "company": {
+        "content": "$1"
+      }
+    }
+  },
+  "identifierInfo": {
+    "message": "With this ID, $COMPANY$ can link your visits across different websites.",
+    "description": "Explanation box below the findings",
+    "placeholders": {
+      "company": {
+        "content": "$1"
+      }
+    }
+  },
+  "technicalLink": {
+    "message": "Technical details · $COUNT$ requests",
+    "description": "Link to the technical view",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "technicalLinkOne": {
+    "message": "Technical details · 1 request",
+    "description": "Link to the technical view, one request"
+  },
+  "technicalTitle": {
+    "message": "Technical details",
+    "description": "Technical view heading"
+  },
+  "technicalSubtitle": {
+    "message": "$COUNT$ requests to $HOSTS$",
+    "description": "Technical view subtitle with request count and hosts",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "hosts": {
+        "content": "$2"
+      }
+    }
+  },
+  "technicalSubtitleOne": {
+    "message": "1 request to $HOSTS$",
+    "description": "Technical view subtitle, one request",
+    "placeholders": {
+      "hosts": {
+        "content": "$1"
+      }
+    }
+  },
+  "technicalParameters": {
+    "message": "Parameters",
+    "description": "Section heading"
+  },
+  "technicalSentAlong": {
+    "message": "Sent along",
+    "description": "Section heading for headers"
+  },
+  "technicalCookies": {
+    "message": "yes · $COUNT$ cookies",
+    "description": "Cookie header value",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "technicalCookiesOne": {
+    "message": "yes · 1 cookie",
+    "description": "Cookie header value, one cookie"
+  },
+  "technicalNoParameters": {
+    "message": "No parameters",
+    "description": "Request without parameters"
+  },
+  "emptyTitle": {
+    "message": "No other companies informed",
+    "description": "Empty state heading"
+  },
+  "emptyText": {
+    "message": "Only $SITE$ itself knows you're here.",
+    "description": "Empty state text",
+    "placeholders": {
+      "site": {
+        "content": "$1"
+      }
+    }
+  },
+  "unavailableTitle": {
+    "message": "This page can't be analysed",
+    "description": "Internal page heading"
+  },
+  "unavailableText": {
+    "message": "Firefox blocks extensions on internal pages such as about: and on Mozilla sites.",
+    "description": "Internal page text"
+  },
+  "permissionTitle": {
+    "message": "Access to websites is turned off",
+    "description": "Missing host permission heading"
+  },
+  "permissionText": {
+    "message": "Allow Onlooker to access websites in about:addons so it can show who's watching.",
+    "description": "Missing host permission text"
+  },
+  "chipSite": {
+    "message": "the site you're on",
+    "description": "Chip label for the site finding"
+  },
+  "titleSite": {
+    "message": "The site you're on",
+    "description": "Row title for the site finding"
+  },
+  "chipPage": {
+    "message": "which page you're viewing",
+    "description": "Chip label for the page finding"
+  },
+  "titlePage": {
+    "message": "Which page you're viewing",
+    "description": "Row title for the page finding"
+  },
+  "chipTitle": {
+    "message": "page title",
+    "description": "Chip label for the title finding"
+  },
+  "titleTitle": {
+    "message": "The page title",
+    "description": "Row title for the title finding"
+  },
+  "chipScreen": {
+    "message": "screen size",
+    "description": "Chip label for the screen finding"
+  },
+  "titleScreen": {
+    "message": "Your screen size",
+    "description": "Row title for the screen finding"
+  },
+  "chipLanguage": {
+    "message": "language",
+    "description": "Chip label for the language finding"
+  },
+  "titleLanguage": {
+    "message": "Your language",
+    "description": "Row title for the language finding"
+  },
+  "chipTimezone": {
+    "message": "time zone",
+    "description": "Chip label for the timezone finding"
+  },
+  "titleTimezone": {
+    "message": "Your time zone",
+    "description": "Row title for the timezone finding"
+  },
+  "chipUseragent": {
+    "message": "browser and system",
+    "description": "Chip label for the useragent finding"
+  },
+  "titleUseragent": {
+    "message": "Your browser and system",
+    "description": "Row title for the useragent finding"
+  },
+  "chipCookies": {
+    "message": "cookies",
+    "description": "Chip label for the cookies finding"
+  },
+  "titleCookies": {
+    "message": "Cookies",
+    "description": "Row title for the cookies finding"
+  },
+  "chipIdentifier": {
+    "message": "recognises you",
+    "description": "Chip label for the identifier finding"
+  },
+  "titleIdentifier": {
+    "message": "An ID that recognises you",
+    "description": "Row title for the identifier finding"
+  }
+}
