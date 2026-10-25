@@ -164,27 +164,6 @@
     "message": "Technical details",
     "description": "Technical view heading"
   },
-  "technicalSubtitle": {
-    "message": "$COUNT$ requests to $HOSTS$",
-    "description": "Technical view subtitle with request count and hosts",
-    "placeholders": {
-      "count": {
-        "content": "$1"
-      },
-      "hosts": {
-        "content": "$2"
-      }
-    }
-  },
-  "technicalSubtitleOne": {
-    "message": "1 request to $HOSTS$",
-    "description": "Technical view subtitle, one request",
-    "placeholders": {
-      "hosts": {
-        "content": "$1"
-      }
-    }
-  },
   "technicalParameters": {
     "message": "Parameters",
     "description": "Section heading"
@@ -209,6 +188,231 @@
   "technicalNoParameters": {
     "message": "No parameters",
     "description": "Request without parameters"
+  },
+  "cookiesTitle": {
+    "message": "Cookies on your device",
+    "description": "Heading of the cookie section"
+  },
+  "cookiesCount": {
+    "message": "$COUNT$ from $COMPANY$",
+    "description": "Number of cookies of a recipient",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "company": {
+        "content": "$2"
+      }
+    }
+  },
+  "cookiesCountOne": {
+    "message": "1 from $COMPANY$",
+    "description": "One cookie of a recipient",
+    "placeholders": {
+      "company": {
+        "content": "$1"
+      }
+    }
+  },
+  "cookiesPartitioned": {
+    "message": "Firefox keeps them only for $SITE$. On other sites, $COMPANY$ sees different cookies.",
+    "description": "Hint when all cookies are partitioned",
+    "placeholders": {
+      "company": {
+        "content": "$1"
+      },
+      "site": {
+        "content": "$2"
+      }
+    }
+  },
+  "cookiesShared": {
+    "message": "Some of them reach $COMPANY$ on every site.",
+    "description": "Hint when some cookies are unpartitioned",
+    "placeholders": {
+      "company": {
+        "content": "$1"
+      }
+    }
+  },
+  "cookiesNone": {
+    "message": "No cookies stored",
+    "description": "Technical view without cookies"
+  },
+  "cookieCount": {
+    "message": "$COUNT$ cookies",
+    "description": "Cookie count in the technical link",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "cookieCountOne": {
+    "message": "1 cookie",
+    "description": "One cookie in the technical link"
+  },
+  "cookieSession": {
+    "message": "until closed",
+    "description": "Lifetime of a session cookie"
+  },
+  "lifetimeMinutes": {
+    "message": "stays $COUNT$ minutes",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeMinutesOne": {
+    "message": "stays 1 minute",
+    "description": "Cookie lifetime"
+  },
+  "lifetimeHours": {
+    "message": "stays $COUNT$ hours",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeHoursOne": {
+    "message": "stays 1 hour",
+    "description": "Cookie lifetime"
+  },
+  "lifetimeDays": {
+    "message": "stays $COUNT$ days",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeDaysOne": {
+    "message": "stays 1 day",
+    "description": "Cookie lifetime"
+  },
+  "lifetimeMonths": {
+    "message": "stays $COUNT$ months",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeMonthsOne": {
+    "message": "stays 1 month",
+    "description": "Cookie lifetime"
+  },
+  "lifetimeYears": {
+    "message": "stays $COUNT$ years",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeYearsOne": {
+    "message": "stays 1 year",
+    "description": "Cookie lifetime"
+  },
+  "tabRequests": {
+    "message": "Requests · $COUNT$",
+    "description": "Technical view tab",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "tabCookies": {
+    "message": "Cookies · $COUNT$",
+    "description": "Technical view tab",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "cookieContent": {
+    "message": "Content",
+    "description": "Section heading for cookie parts"
+  },
+  "cookieProperties": {
+    "message": "Properties",
+    "description": "Section heading for cookie attributes"
+  },
+  "propDomain": {
+    "message": "Domain",
+    "description": "Cookie attribute"
+  },
+  "propPath": {
+    "message": "Path",
+    "description": "Cookie attribute"
+  },
+  "propExpires": {
+    "message": "Expires",
+    "description": "Cookie attribute"
+  },
+  "propSecure": {
+    "message": "Secure",
+    "description": "Cookie attribute"
+  },
+  "propHttpOnly": {
+    "message": "HttpOnly",
+    "description": "Cookie attribute"
+  },
+  "propSameSite": {
+    "message": "SameSite",
+    "description": "Cookie attribute"
+  },
+  "propPartitioned": {
+    "message": "Partitioned",
+    "description": "Cookie attribute"
+  },
+  "valueYes": {
+    "message": "yes",
+    "description": "Boolean value"
+  },
+  "valueNo": {
+    "message": "no",
+    "description": "Boolean value"
+  },
+  "partitionedFor": {
+    "message": "only for $SITE$",
+    "description": "Partition of a cookie",
+    "placeholders": {
+      "site": {
+        "content": "$1"
+      }
+    }
+  },
+  "partIdentifier": {
+    "message": "Identifier",
+    "description": "Meaning of a cookie part"
+  },
+  "partTimestamp": {
+    "message": "Timestamp: $DATE$",
+    "description": "Meaning of a cookie part",
+    "placeholders": {
+      "date": {
+        "content": "$1"
+      }
+    }
+  },
+  "partText": {
+    "message": "Readable text: $TEXT$",
+    "description": "Meaning of a cookie part",
+    "placeholders": {
+      "text": {
+        "content": "$1"
+      }
+    }
   },
   "emptyTitle": {
     "message": "No other companies informed",

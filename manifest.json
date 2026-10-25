@@ -8,16 +8,29 @@
     "48": "assets/logo-on-light.svg",
     "96": "assets/logo-on-light.svg"
   },
-  "permissions": ["webRequest", "storage", "tabs"],
-  "host_permissions": ["<all_urls>"],
+  "permissions": [
+    "webRequest",
+    "storage",
+    "tabs",
+    "cookies"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "background": {
-    "scripts": ["background/main.js"],
+    "scripts": [
+      "background/main.js"
+    ],
     "type": "module"
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content/page-probe.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content/page-probe.js"
+      ],
       "run_at": "document_start"
     }
   ],
@@ -26,8 +39,16 @@
     "default_popup": "popup/popup.html",
     "default_icon": "assets/logo-on-light.svg",
     "theme_icons": [
-      { "light": "assets/logo-on-dark.svg", "dark": "assets/logo-on-light.svg", "size": 16 },
-      { "light": "assets/logo-on-dark.svg", "dark": "assets/logo-on-light.svg", "size": 32 }
+      {
+        "light": "assets/logo-on-dark.svg",
+        "dark": "assets/logo-on-light.svg",
+        "size": 16
+      },
+      {
+        "light": "assets/logo-on-dark.svg",
+        "dark": "assets/logo-on-light.svg",
+        "size": 32
+      }
     ]
   },
   "browser_specific_settings": {
@@ -35,7 +56,9 @@
       "id": "kd-onlooker@karnes-development",
       "strict_min_version": "140.0",
       "data_collection_permissions": {
-        "required": ["none"]
+        "required": [
+          "none"
+        ]
       }
     },
     "gecko_android": {

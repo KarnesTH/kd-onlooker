@@ -164,27 +164,6 @@
     "message": "Technische Details",
     "description": "Technical view heading"
   },
-  "technicalSubtitle": {
-    "message": "$COUNT$ Anfragen an $HOSTS$",
-    "description": "Technical view subtitle with request count and hosts",
-    "placeholders": {
-      "count": {
-        "content": "$1"
-      },
-      "hosts": {
-        "content": "$2"
-      }
-    }
-  },
-  "technicalSubtitleOne": {
-    "message": "1 Anfrage an $HOSTS$",
-    "description": "Technical view subtitle, one request",
-    "placeholders": {
-      "hosts": {
-        "content": "$1"
-      }
-    }
-  },
   "technicalParameters": {
     "message": "Parameter",
     "description": "Section heading"
@@ -209,6 +188,231 @@
   "technicalNoParameters": {
     "message": "Keine Parameter",
     "description": "Request without parameters"
+  },
+  "cookiesTitle": {
+    "message": "Cookies auf deinem Gerät",
+    "description": "Heading of the cookie section"
+  },
+  "cookiesCount": {
+    "message": "$COUNT$ von $COMPANY$",
+    "description": "Number of cookies of a recipient",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      },
+      "company": {
+        "content": "$2"
+      }
+    }
+  },
+  "cookiesCountOne": {
+    "message": "1 von $COMPANY$",
+    "description": "One cookie of a recipient",
+    "placeholders": {
+      "company": {
+        "content": "$1"
+      }
+    }
+  },
+  "cookiesPartitioned": {
+    "message": "Firefox hält sie nur für $SITE$ vor. Auf anderen Seiten sieht $COMPANY$ andere Cookies.",
+    "description": "Hint when all cookies are partitioned",
+    "placeholders": {
+      "company": {
+        "content": "$1"
+      },
+      "site": {
+        "content": "$2"
+      }
+    }
+  },
+  "cookiesShared": {
+    "message": "Einige davon bekommt $COMPANY$ auf jeder Seite.",
+    "description": "Hint when some cookies are unpartitioned",
+    "placeholders": {
+      "company": {
+        "content": "$1"
+      }
+    }
+  },
+  "cookiesNone": {
+    "message": "Keine Cookies gespeichert",
+    "description": "Technical view without cookies"
+  },
+  "cookieCount": {
+    "message": "$COUNT$ Cookies",
+    "description": "Cookie count in the technical link",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "cookieCountOne": {
+    "message": "1 Cookie",
+    "description": "One cookie in the technical link"
+  },
+  "cookieSession": {
+    "message": "bis zum Schließen",
+    "description": "Lifetime of a session cookie"
+  },
+  "lifetimeMinutes": {
+    "message": "bleibt $COUNT$ Minuten",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeMinutesOne": {
+    "message": "bleibt 1 Minute",
+    "description": "Cookie lifetime"
+  },
+  "lifetimeHours": {
+    "message": "bleibt $COUNT$ Stunden",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeHoursOne": {
+    "message": "bleibt 1 Stunde",
+    "description": "Cookie lifetime"
+  },
+  "lifetimeDays": {
+    "message": "bleibt $COUNT$ Tage",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeDaysOne": {
+    "message": "bleibt 1 Tag",
+    "description": "Cookie lifetime"
+  },
+  "lifetimeMonths": {
+    "message": "bleibt $COUNT$ Monate",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeMonthsOne": {
+    "message": "bleibt 1 Monat",
+    "description": "Cookie lifetime"
+  },
+  "lifetimeYears": {
+    "message": "bleibt $COUNT$ Jahre",
+    "description": "Cookie lifetime",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "lifetimeYearsOne": {
+    "message": "bleibt 1 Jahr",
+    "description": "Cookie lifetime"
+  },
+  "tabRequests": {
+    "message": "Anfragen · $COUNT$",
+    "description": "Technical view tab",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "tabCookies": {
+    "message": "Cookies · $COUNT$",
+    "description": "Technical view tab",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "cookieContent": {
+    "message": "Inhalt",
+    "description": "Section heading for cookie parts"
+  },
+  "cookieProperties": {
+    "message": "Eigenschaften",
+    "description": "Section heading for cookie attributes"
+  },
+  "propDomain": {
+    "message": "Domain",
+    "description": "Cookie attribute"
+  },
+  "propPath": {
+    "message": "Pfad",
+    "description": "Cookie attribute"
+  },
+  "propExpires": {
+    "message": "Läuft ab",
+    "description": "Cookie attribute"
+  },
+  "propSecure": {
+    "message": "Secure",
+    "description": "Cookie attribute"
+  },
+  "propHttpOnly": {
+    "message": "HttpOnly",
+    "description": "Cookie attribute"
+  },
+  "propSameSite": {
+    "message": "SameSite",
+    "description": "Cookie attribute"
+  },
+  "propPartitioned": {
+    "message": "Abgeschottet",
+    "description": "Cookie attribute"
+  },
+  "valueYes": {
+    "message": "ja",
+    "description": "Boolean value"
+  },
+  "valueNo": {
+    "message": "nein",
+    "description": "Boolean value"
+  },
+  "partitionedFor": {
+    "message": "nur für $SITE$",
+    "description": "Partition of a cookie",
+    "placeholders": {
+      "site": {
+        "content": "$1"
+      }
+    }
+  },
+  "partIdentifier": {
+    "message": "Wiedererkennungs-ID",
+    "description": "Meaning of a cookie part"
+  },
+  "partTimestamp": {
+    "message": "Zeitstempel: $DATE$",
+    "description": "Meaning of a cookie part",
+    "placeholders": {
+      "date": {
+        "content": "$1"
+      }
+    }
+  },
+  "partText": {
+    "message": "lesbarer Text: $TEXT$",
+    "description": "Meaning of a cookie part",
+    "placeholders": {
+      "text": {
+        "content": "$1"
+      }
+    }
   },
   "emptyTitle": {
     "message": "Keine anderen Firmen informiert",

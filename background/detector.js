@@ -1,6 +1,7 @@
 import { resolveCompany } from "./company-resolver.js";
 import { readTab } from "./tab-store.js";
 import { isIdCandidate, hash, lookupIds } from "./id-tracker.js";
+import { readCookies } from "./cookie-reader.js";
 
 /**
  * Builds the popup report of a tab: recipients with their findings and requests, sorted by the
@@ -30,8 +31,8 @@ export async function buildReport(tabId) {
 }
 
 /**
- * Collects the findings of one recipient from its requests and marks every parameter that
- * carries a finding.
+ * Collects the findings of one recipient from its requests, marks every parameter that carries
+ * a finding, and adds the recipient's cookies.
  */
 async function evaluateRecipient(requests, record, matchers) {
     const company = resolveCompany(requests[0].host);
@@ -91,13 +92,15 @@ async function evaluateRecipient(requests, record, matchers) {
     }
 
     shown.sort((a, b) => a.timeStamp - b.timeStamp);
+    const hosts = [...new Set(requests.map((request) => request.host))];
     return {
         key: company.key,
         name: company.name,
         known: company.known,
-        hosts: [...new Set(requests.map((request) => request.host))],
+        hosts,
         findings: [...findings.values()],
-        requests: shown
+        requests: shown,
+        cookies: await readCookies(hosts, record.pageHost)
     };
 }
 

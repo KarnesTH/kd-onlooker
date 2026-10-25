@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -73,6 +73,15 @@
             <span data-field="noticeText"></span>
         </section>
 
+        <section class="cookies" data-field="cookies">
+            <div class="cookies__head">
+                <span class="cookies__title" data-i18n="cookiesTitle"></span>
+                <span class="cookies__count" data-field="cookiesCount"></span>
+            </div>
+            <span class="cookies__hint" data-field="cookiesHint"></span>
+            <div class="cookie-list" data-list="cookies"></div>
+        </section>
+
         <button type="button" class="tech-link" data-field="technical">
             <span data-field="technicalText"></span>
             <i class="ti ti-chevron-right icon" aria-hidden="true"></i>
@@ -93,7 +102,13 @@
         <span class="tech-head__sub" data-field="sub"></span>
     </section>
 
-    <div class="requests" data-list="requests"></div>
+    <div class="tabs" role="tablist">
+        <button type="button" class="tab" role="tab" data-field="tabRequests" aria-selected="true"></button>
+        <button type="button" class="tab" role="tab" data-field="tabCookies" aria-selected="false"></button>
+    </div>
+
+    <div class="requests" role="tabpanel" data-list="requests"></div>
+    <div class="requests" role="tabpanel" data-list="cookieItems" hidden></div>
 </section>
 
 <section class="view view--compact" data-view="empty" hidden>
@@ -233,6 +248,59 @@
         <span class="kv__key" data-field="key"></span>
         <span class="kv__value" data-field="value"></span>
     </div>
+</template>
+
+<template id="tpl-cookie-row">
+    <div class="cookie-row">
+        <div class="cookie-row__top">
+            <i class="ti ti-cookie icon" aria-hidden="true"></i>
+            <span class="cookie-row__name" data-field="name"></span>
+            <span class="cookie-row__life" data-field="lifetime"></span>
+        </div>
+        <div class="chips" data-list="chips"></div>
+    </div>
+</template>
+
+<template id="tpl-cookie-item">
+    <div class="request">
+        <button type="button" class="request__toggle" data-field="toggle" aria-expanded="false">
+            <i class="ti ti-chevron-right icon icon--14" data-field="chevron" aria-hidden="true"></i>
+            <span class="request__path" data-field="name"></span>
+            <span class="request__time" data-field="domain"></span>
+        </button>
+        <div class="request__body" data-field="body" hidden>
+            <code class="url-box" data-field="value"></code>
+            <div class="kv-block">
+                <span class="eyebrow" data-i18n="cookieContent"></span>
+                <div class="kv" data-list="parts"></div>
+            </div>
+            <div class="kv-block">
+                <span class="eyebrow" data-i18n="cookieProperties"></span>
+                <div class="kv" data-list="props"></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="tpl-kv-part">
+    <div class="kv__row">
+        <span class="kv__key" data-field="key"></span>
+        <span class="kv__part">
+        <span class="kv__value" data-field="value"></span>
+        <span class="kv__meaning" data-field="meaning"></span>
+      </span>
+    </div>
+</template>
+
+<template id="tpl-kv-prop">
+    <div class="kv__row kv__row--wide">
+        <span class="kv__key" data-field="key"></span>
+        <span class="kv__value" data-field="value"></span>
+    </div>
+</template>
+
+<template id="tpl-cookies-empty">
+    <div class="kv__empty" data-i18n="cookiesNone"></div>
 </template>
 
 <template id="tpl-kv-empty">

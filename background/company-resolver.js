@@ -26,7 +26,7 @@ export function resolveCompany(host) {
  * generic second level (`co`, `com`, …) under a two-letter country code, e.g. `example.co.uk`.
  * IP addresses are returned unchanged.
  */
-function baseDomain(host) {
+export function baseDomain(host) {
     if (host.includes(":") || /^\d+(\.\d+){3}$/.test(host)) return host;
     const labels = host.split(".");
     if (labels.length <= 2) return host;
